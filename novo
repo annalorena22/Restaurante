@@ -1,6 +1,3 @@
-<!-- # Restaurante
-do Éderson -->
-
 from PIL import Image
 import customtkinter
 
