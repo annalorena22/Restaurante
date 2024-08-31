@@ -11,6 +11,10 @@ janelao.minsize(900,900)
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("green")
 
+#frame Tela Login 
+tela_login = customtkinter.CTkFrame(janelao)
+tela_login.pack(fill="both", expand = True)
+
 #def pra gerar um quadrado com cor
 def quadro(master, width, height, cor, posx, posy):
     customtkinter.CTkFrame(
@@ -31,26 +35,47 @@ def texto(master,texto, cor_do_texto, fonte, tamanho, cor, posx, posy):
         ).place(relx= posx, rely=posy, anchor="center")
     
 #def pra janela de aviso personalizada    
-def janela_aviso(titulo, texto):
+def janela_aviso_bom(titulo, texto):
     aviso = customtkinter.CTk()
-    master = tela_login
     aviso.title(titulo)
     aviso.geometry("300x150")
     aviso.eval('tk::PlaceWindow . right')
     aviso.resizable(False, False)
     aviso.configure(bg_color="#272e36")
+
     aviso_label = customtkinter.CTkLabel(aviso, text=texto, wraplength=250, text_color="white")
     aviso_label.place(relx=0.5, rely=0.3, anchor='center')
 
     def fechar_janela_aviso():
         aviso.destroy()
-        tela_menu.pack(fill="both", expand=True)
+        tela_login.pack_forget()
+        tela_menu.pack(fill="both", expand = True)
 
     botao_ok = customtkinter.CTkButton(aviso, text="OK", fg_color="#424f5c", hover_color="#0a6638", command=fechar_janela_aviso)
     botao_ok.place(relx=0.5, rely=0.7, anchor='center')
 
     aviso.mainloop()
 
+def janela_aviso_ruim(titulo, texto):
+    aviso = customtkinter.CTk()
+    aviso.title(titulo)
+    aviso.geometry("300x150")
+    aviso.eval('tk::PlaceWindow . right')
+    aviso.resizable(False, False)
+    aviso.configure(bg_color="#272e36")
+
+    aviso_label = customtkinter.CTkLabel(aviso, text=texto, wraplength=250, text_color="white")
+    aviso_label.place(relx=0.5, rely=0.3, anchor='center')
+
+    def fechar_janela_aviso():
+        aviso.destroy()
+        tela_login.pack(fill="both", expand = True)
+
+    botao_ok = customtkinter.CTkButton(aviso, text="OK", fg_color="#424f5c", hover_color="#0a6638", command=fechar_janela_aviso)
+    botao_ok.place(relx=0.5, rely=0.7, anchor='center')
+
+    aviso.mainloop()
+    
 #def função botão "Entrar"
 def funcao_botao():
     login = entrada_login.get()
@@ -58,17 +83,15 @@ def funcao_botao():
     senha_de_novo = entrada_confirmar_senha.get()
 
     if login == "" or senha == "" or senha_de_novo == "":
-        janela_aviso("Aviso", "Campo não preenchido, confira os campos de cadastro e tente novamente.")
+        janela_aviso_ruim("Aviso", "Campo não preenchido, confira os campos de cadastro e tente novamente.")
     elif login == senha:
-        janela_aviso("Aviso","O login e a senha não podem ser iguais.")
+        janela_aviso_ruim("Aviso","O login e a senha não podem ser iguais.")
     elif senha != senha_de_novo:
-        janela_aviso("Aviso","Senhas não coincidem.")
+        janela_aviso_ruim("Aviso","Senhas não coincidem.")
     else:
-        janela_aviso("Aviso","Sucesso! Clique em 'OK' para visualizar o menu.")
-        tela_login.pack_forget()
+        janela_aviso_bom("Aviso","Sucesso! Clique em 'OK' para visualizar o menu.")
+       
 
-tela_login = customtkinter.CTkFrame(janelao)
-tela_login.pack(fill="both", expand = True)
 
 quadro(tela_login, 800, 720, "#272e36", 0.5,0.5)
 
@@ -129,8 +152,7 @@ botao_cadastrar = customtkinter.CTkButton(
     font = ("Arial", 12, "bold"),
     fg_color= "#424f5c",
     command= funcao_botao
-    )
-botao_cadastrar.place(relx=0.5, rely=0.6, anchor="center")
+    ).place(relx=0.5, rely=0.6, anchor="center")
 
 tela_menu = customtkinter.CTkFrame(janelao)
 quadro(tela_menu, 800, 720, "#272e36", 0.5, 0.5)
