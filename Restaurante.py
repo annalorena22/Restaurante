@@ -9,12 +9,16 @@ janelao.geometry("900x900")
 janelao.maxsize(900,900)
 janelao.minsize(900,900)
 customtkinter.set_appearance_mode("dark")
-customtkinter.set_default_color_theme("green")
+# customtkinter.set_default_color_theme("dark-blue")
 
-#frame Tela Login 
+#------------------------------------------------------------------------------------------------
+#Frame Tela Login 
 tela_login = customtkinter.CTkFrame(janelao)
 tela_login.pack(fill="both", expand = True)
 
+#------------------------------------------------------------------------------------------------
+
+#FUNÇÕES
 #def pra gerar um quadrado com cor
 def quadro(master, width, height, cor, posx, posy):
     customtkinter.CTkFrame(
@@ -91,8 +95,9 @@ def funcao_botao():
     else:
         janela_aviso_bom("Aviso","Sucesso! Clique em 'OK' para visualizar o menu.")
        
+#------------------------------------------------------------------------------------------------
 
-
+#Layout Tela Login 
 quadro(tela_login, 800, 720, "#272e36", 0.5,0.5)
 
 foto1 = customtkinter.CTkImage(
@@ -150,12 +155,110 @@ botao_cadastrar = customtkinter.CTkButton(
     text = "Entrar",
     text_color = "white",
     font = ("Arial", 12, "bold"),
-    fg_color= "#424f5c",
+    bg_color= "#424f5c",
     command= funcao_botao
     ).place(relx=0.5, rely=0.6, anchor="center")
 
+
+#------------------------------------------------------------------------------------------------
+
+#Tela Menu
+
 tela_menu = customtkinter.CTkFrame(janelao)
 quadro(tela_menu, 800, 720, "#272e36", 0.5, 0.5)
-texto(tela_menu, "Éderson Restaurant", "white", ("Courier New"), 35, "#272e36", 0.5, 0.16)
+texto(tela_menu, "Éderson Restaurant", "white", ("Courier New"), 30, "#272e36", 0.5, 0.14)
+
+foto2 = customtkinter.CTkImage(
+    light_image=Image.open("tela-menu.png"),
+    size=(700,620)
+)
+foto2_label = customtkinter.CTkLabel(tela_menu, image=foto2, text="")
+foto2_label.place(relx=0.5, rely=0.52, anchor='center')
+
+#Funções botões menu
+
+def botao_entradas():
+        tela_menu.pack_forget()
+        tela_entradas.pack(fill="both", expand = True)
+
+
+botao_entradas = customtkinter.CTkButton(
+    tela_menu,
+    text = "Entradas",
+    text_color = "white",
+    font = ("Arial", 15, "bold"),
+    hover_color= "#768ea6",
+    bg_color= '#4d5d6e',
+    fg_color= "#4d5d6e",
+    command= botao_entradas
+    ).place(relx=0.24, rely=0.47, anchor="center")
+
+botao_principal = customtkinter.CTkButton(
+    tela_menu,
+    text = "Pratos Principais",
+    text_color = "white",
+    font = ("Arial", 15, "bold"),
+    hover_color= "#768ea6",
+    bg_color= '#4d5d6e',
+    fg_color= "#4d5d6e",
+    command= funcao_botao
+    ).place(relx=0.5, rely=0.47, anchor="center")
+
+botao_sobremesa = customtkinter.CTkButton(
+    tela_menu,
+    text = "Sobremesas",
+    text_color = "white",
+    font = ("Arial", 15, "bold"),
+    hover_color= "#768ea6",
+    bg_color= '#4d5d6e',
+    fg_color= "#4d5d6e",
+    command= funcao_botao
+    ).place(relx=0.76, rely=0.47, anchor="center")
+
+botao_chefe = customtkinter.CTkButton(
+    tela_menu,
+    text = "Menu do Chefe",
+    text_color = "white",
+    font = ("Arial", 15, "bold"),
+    hover_color= "#768ea6",
+    bg_color= '#4d5d6e',
+    fg_color= "#4d5d6e",
+    command= funcao_botao
+    ).place(relx=0.24, rely=0.78, anchor="center")
+
+botao_bebidas = customtkinter.CTkButton(
+    tela_menu,
+    text = "Bebidas",
+    text_color = "white",
+    font = ("Arial", 15, "bold"),
+    hover_color= "#768ea6",
+    bg_color= '#4d5d6e',
+    fg_color= "#4d5d6e",
+    command= funcao_botao
+    ).place(relx=0.5, rely=0.78, anchor="center")
+
+botao_bebialcool = customtkinter.CTkButton(
+    tela_menu,
+    text = "Bebidas Alcoólicas",
+    text_color = "white",
+    font = ("Arial", 15, "bold"),
+    hover_color= "#768ea6",
+    bg_color= '#4d5d6e',
+    fg_color= "#4d5d6e",
+    command= funcao_botao
+    ).place(relx=0.76, rely=0.78, anchor="center")
+
+#------------------------------------------------------------------------------------------------
+
+tela_entradas = customtkinter.CTkFrame(janelao)
+quadro(tela_entradas, 800, 720, "#272e36", 0.5, 0.5)
+texto(tela_entradas, "Éderson Restaurant", "white", ("Courier New"), 30, "#272e36", 0.5, 0.14)
+
+foto3 = customtkinter.CTkImage(
+    light_image=Image.open("tela_entradas.png"),
+    size=(700,620)
+)
+foto3_label = customtkinter.CTkLabel(tela_entradas, image=foto3, text="")
+foto3_label.place(relx=0.5, rely=0.52, anchor='center')
 
 janelao.mainloop()
